@@ -1,21 +1,30 @@
-import {
-  Button,
-  Grid,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import React from "react";
-import {checarHabitaciones as calcFn} from "./../Functions/Functions"
+import { checarHabitaciones as calcFn } from "./../Functions/Functions";
 
 const MainPage = () => {
   const [premiumRooms, setPremiumRooms] = React.useState(1);
   const [economyRooms, setEconomyRooms] = React.useState(1);
   const [result, setResult] = React.useState(123);
 
-    const handleClick = ()=>{
-        let ans = calcFn(premiumRooms,economyRooms);
-        setResult(ans);
+  const handleClick = () => {
+    let ans = calcFn(premiumRooms, economyRooms);
+    setResult(ans);
+    localStorage.setItem("premiumRooms", premiumRooms);
+    localStorage.setItem("economyRooms", economyRooms);
+  };
+
+  React.useEffect(() => {
+    try {
+      let preR = Number(localStorage.getItem("premiumRooms"));
+      let ecoR = Number(localStorage.getItem("economyRooms"));
+      setPremiumRooms(preR);
+      setEconomyRooms(ecoR);
+      handleClick();
+    } catch (error) {
+      console.log(error);
     }
+  }, []);
 
   return (
     <div className="main-page flex">
@@ -33,7 +42,7 @@ const MainPage = () => {
               size="small"
               className="outline-input"
               fullWidth
-            //   placeholder="1"
+              //   placeholder="1"
               type="number"
               value={premiumRooms}
               onChange={(e) => setPremiumRooms(e.target.value)}
@@ -48,14 +57,18 @@ const MainPage = () => {
               size="small"
               className="outline-input"
               fullWidth
-            //   placeholder="Economy Rooms"
+              //   placeholder="Economy Rooms"
               type="number"
               value={economyRooms}
               onChange={(e) => setEconomyRooms(e.target.value)}
             />
           </Grid>
           <Grid item xs={6}>
-            <Button variant="outlined" className="outline-btn" onClick={handleClick}>
+            <Button
+              variant="outlined"
+              className="outline-btn"
+              onClick={handleClick}
+            >
               Calculate
             </Button>
           </Grid>
