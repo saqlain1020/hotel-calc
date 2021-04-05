@@ -14,7 +14,7 @@ const clients = [
  export function checarHabitaciones(Premium, Economy) {
     let aboveHundred = clients.filter(n => n >= 100).sort((a, b) => b - a);
     let belowHundred = clients.filter( n => n < 100).sort((a, b) => b - a);
-  
+
     let premiumProfits = 0;
     //loop where we take the first premium number of clients and what each one pay for his/her room and then we sums all this numbers to obtain the total earning for our Premium room's.
     if(Premium <= aboveHundred.length){

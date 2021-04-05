@@ -3,9 +3,9 @@ import React from "react";
 import { checarHabitaciones as calcFn } from "./../Functions/Functions";
 
 const MainPage = () => {
-  const [premiumRooms, setPremiumRooms] = React.useState(1);
-  const [economyRooms, setEconomyRooms] = React.useState(1);
-  const [result, setResult] = React.useState(123);
+  const [premiumRooms, setPremiumRooms] = React.useState(0);
+  const [economyRooms, setEconomyRooms] = React.useState(0);
+  const [result, setResult] = React.useState(0);
 
   const handleClick = () => {
     let ans = calcFn(premiumRooms, economyRooms);
@@ -20,7 +20,6 @@ const MainPage = () => {
       let ecoR = Number(localStorage.getItem("economyRooms"));
       setPremiumRooms(preR);
       setEconomyRooms(ecoR);
-      handleClick();
     } catch (error) {
       console.log(error);
     }
