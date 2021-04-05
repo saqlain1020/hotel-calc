@@ -1,33 +1,21 @@
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import React from "react";
+import { connect } from "react-redux";
 import { checarHabitaciones as calcFn } from "./../Functions/Functions";
+import { setRooms, setResult } from "./../Redux/rooms/roomsActions";
 
-const MainPage = () => {
-  const [premiumRooms, setPremiumRooms] = React.useState(0);
-  const [economyRooms, setEconomyRooms] = React.useState(0);
-  const [result, setResult] = React.useState([0, 0]);
+const MainPage = ({ rooms, setResult, setRooms, ...restProps }) => {
+  const [premiumRooms, setPremiumRooms] = React.useState(rooms.premiumRooms);
+  const [economyRooms, setEconomyRooms] = React.useState(rooms.economyRooms);
 
   const handleClick = () => {
     let ans = calcFn(premiumRooms, economyRooms);
+    setRooms({
+      premiumRooms,
+      economyRooms,
+    });
     setResult(ans);
-    localStorage.setItem("premiumRooms", premiumRooms);
-    localStorage.setItem("economyRooms", economyRooms);
   };
-
-  React.useEffect(() => {
-    try {
-      let preR = premiumRooms;
-      let ecoR = economyRooms;
-
-      preR = Number(localStorage.getItem("premiumRooms"));
-      ecoR = Number(localStorage.getItem("economyRooms"));
-
-      setPremiumRooms(preR);
-      setEconomyRooms(ecoR);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
 
   return (
     <div className="main-page flex">
@@ -68,12 +56,12 @@ const MainPage = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography align="center">
-              Premium Rooms Earnings: <b>{result[0]}</b>
+              Premium Rooms Earnings: <b>{rooms.result[0]}</b>
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography align="center">
-              Economy Rooms Earnings: <b>{result[1]}</b>
+              Economy Rooms Earnings: <b>{rooms.result[1]}</b>
             </Typography>
           </Grid>
           <Grid item xs={6}>
@@ -89,7 +77,9 @@ const MainPage = () => {
             <Typography align="right" variant="h6">
               Total:{" "}
               <b>
-                {isNaN(result[0] + result[1]) ? "0" : result[0] + result[1]}
+                {isNaN(rooms.result[0] + rooms.result[1])
+                  ? "0"
+                  : rooms.result[0] + rooms.result[1]}
               </b>
             </Typography>
           </Grid>
@@ -99,4 +89,13 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+const mapState = (store) => ({
+  rooms: store.rooms,
+});
+
+const actions = {
+  setRooms,
+  setResult,
+};
+
+export default connect(mapState, actions)(MainPage);
