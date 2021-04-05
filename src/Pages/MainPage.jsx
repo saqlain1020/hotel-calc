@@ -4,12 +4,14 @@ import { connect } from "react-redux";
 import { checarHabitaciones as calcFn } from "./../Functions/Functions";
 import { setRooms, setResult } from "./../Redux/rooms/roomsActions";
 
+const clients = [23, 45, 155, 374, 22, 99, 100, 101, 115, 209];
+
 const MainPage = ({ rooms, setResult, setRooms, ...restProps }) => {
   const [premiumRooms, setPremiumRooms] = React.useState(rooms.premiumRooms);
   const [economyRooms, setEconomyRooms] = React.useState(rooms.economyRooms);
 
   const handleClick = () => {
-    let ans = calcFn(premiumRooms, economyRooms);
+    let ans = calcFn(premiumRooms, economyRooms, clients);
     setRooms({
       premiumRooms,
       economyRooms,
