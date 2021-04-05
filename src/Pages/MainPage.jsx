@@ -33,7 +33,7 @@ const MainPage = ({ rooms, setResult, setRooms, ...restProps }) => {
             <TextField
               variant="outlined"
               size="small"
-              className="outline-input"
+              className="outline-input premium"
               fullWidth
               //   placeholder="1"
               type="number"
@@ -48,7 +48,7 @@ const MainPage = ({ rooms, setResult, setRooms, ...restProps }) => {
             <TextField
               variant="outlined"
               size="small"
-              className="outline-input"
+              className="outline-input economy"
               fullWidth
               //   placeholder="Economy Rooms"
               type="number"
@@ -58,12 +58,12 @@ const MainPage = ({ rooms, setResult, setRooms, ...restProps }) => {
           </Grid>
           <Grid item xs={12}>
             <Typography align="center">
-              Premium Rooms Earnings: <b>{rooms.result[0]}</b>
+              Premium Rooms Earnings: <b className="premiumRes">{rooms.result[0]}</b>
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography align="center">
-              Economy Rooms Earnings: <b>{rooms.result[1]}</b>
+              Economy Rooms Earnings: <b className="economyRes">{rooms.result[1]}</b>
             </Typography>
           </Grid>
           <Grid item xs={6}>
