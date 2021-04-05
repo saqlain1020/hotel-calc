@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.nurignore_files
+
+.nurignore_dirs
+
+.ersetzeignore_files
+
+.ersetzeignore_dirs
