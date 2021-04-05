@@ -62,6 +62,16 @@ const MainPage = () => {
               onChange={(e) => setEconomyRooms(e.target.value)}
             />
           </Grid>
+          <Grid item xs={12}>
+          <Typography align="center" >
+          Premium Rooms Earnings: <b>{result[0]}</b>
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+          <Typography align="center" >
+          Economy Rooms Earnings: <b>{result[1]}</b>
+            </Typography>
+          </Grid>
           <Grid item xs={6}>
             <Button
               variant="outlined"
@@ -73,7 +83,7 @@ const MainPage = () => {
           </Grid>
           <Grid item xs={6}>
             <Typography align="right" variant="h6">
-              <b>${result}</b>
+             Total: <b>{result[0]+result[1]}</b>
             </Typography>
           </Grid>
         </Grid>
