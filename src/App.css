@@ -41,6 +41,10 @@ h1,h2,h3,h4,h5,h6,p{
 .outline-btn{
   border-radius: 360px !important;
   color: #46494F !important;
+  /* text-transform: none !important; */
+}
+.outline-btn > span{
+  /* font-weight: 600 !important; */
 }
 @media only screen and (max-width:500px){
   .main-page-container{

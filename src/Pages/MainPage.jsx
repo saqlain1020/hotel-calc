@@ -1,16 +1,21 @@
 import {
   Button,
   Grid,
-  OutlinedInput,
   TextField,
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import {checarHabitaciones as calcFn} from "./../Functions/Functions"
 
 const MainPage = () => {
-  const [premiumRooms, setPremiumRooms] = React.useState(null);
-  const [economyRooms, setEconomyRooms] = React.useState(null);
+  const [premiumRooms, setPremiumRooms] = React.useState(1);
+  const [economyRooms, setEconomyRooms] = React.useState(1);
   const [result, setResult] = React.useState(123);
+
+    const handleClick = ()=>{
+        let ans = calcFn(premiumRooms,economyRooms);
+        setResult(ans);
+    }
 
   return (
     <div className="main-page flex">
@@ -28,7 +33,7 @@ const MainPage = () => {
               size="small"
               className="outline-input"
               fullWidth
-              placeholder={1}
+            //   placeholder="1"
               type="number"
               value={premiumRooms}
               onChange={(e) => setPremiumRooms(e.target.value)}
@@ -43,14 +48,14 @@ const MainPage = () => {
               size="small"
               className="outline-input"
               fullWidth
-              placeholder={1}
+            //   placeholder="Economy Rooms"
               type="number"
               value={economyRooms}
               onChange={(e) => setEconomyRooms(e.target.value)}
             />
           </Grid>
           <Grid item xs={6}>
-            <Button variant="outlined" className="outline-btn">
+            <Button variant="outlined" className="outline-btn" onClick={handleClick}>
               Calculate
             </Button>
           </Grid>
