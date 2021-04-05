@@ -20,6 +20,7 @@ const MainPage = () => {
       let ecoR = Number(localStorage.getItem("economyRooms"));
       setPremiumRooms(preR);
       setEconomyRooms(ecoR);
+      console.log(premiumRooms,economyRooms)
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +30,7 @@ const MainPage = () => {
     <div className="main-page flex">
       <div className="main-page-container">
         <Typography variant="h4" align="center" style={{ marginBottom: 30 }}>
-          <b>Rooms Calculator</b>
+          <b>Earning Calculator</b>
         </Typography>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={6}>
@@ -83,7 +84,7 @@ const MainPage = () => {
           </Grid>
           <Grid item xs={6}>
             <Typography align="right" variant="h6">
-             Total: <b>{result[0]+result[1]}</b>
+             Total: <b>{isNaN(result[0]+result[1])?"0":result[0]+result[1]}</b>
             </Typography>
           </Grid>
         </Grid>
