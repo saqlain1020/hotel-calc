@@ -5,7 +5,7 @@ import { checarHabitaciones as calcFn } from "./../Functions/Functions";
 const MainPage = () => {
   const [premiumRooms, setPremiumRooms] = React.useState(0);
   const [economyRooms, setEconomyRooms] = React.useState(0);
-  const [result, setResult] = React.useState(0);
+  const [result, setResult] = React.useState([0, 0]);
 
   const handleClick = () => {
     let ans = calcFn(premiumRooms, economyRooms);
@@ -16,11 +16,14 @@ const MainPage = () => {
 
   React.useEffect(() => {
     try {
-      let preR = Number(localStorage.getItem("premiumRooms"));
-      let ecoR = Number(localStorage.getItem("economyRooms"));
+      let preR = premiumRooms;
+      let ecoR = economyRooms;
+
+      preR = Number(localStorage.getItem("premiumRooms"));
+      ecoR = Number(localStorage.getItem("economyRooms"));
+
       setPremiumRooms(preR);
       setEconomyRooms(ecoR);
-      console.log(premiumRooms,economyRooms)
     } catch (error) {
       console.log(error);
     }
@@ -64,13 +67,13 @@ const MainPage = () => {
             />
           </Grid>
           <Grid item xs={12}>
-          <Typography align="center" >
-          Premium Rooms Earnings: <b>{result[0]}</b>
+            <Typography align="center">
+              Premium Rooms Earnings: <b>{result[0]}</b>
             </Typography>
           </Grid>
           <Grid item xs={12}>
-          <Typography align="center" >
-          Economy Rooms Earnings: <b>{result[1]}</b>
+            <Typography align="center">
+              Economy Rooms Earnings: <b>{result[1]}</b>
             </Typography>
           </Grid>
           <Grid item xs={6}>
@@ -84,7 +87,10 @@ const MainPage = () => {
           </Grid>
           <Grid item xs={6}>
             <Typography align="right" variant="h6">
-             Total: <b>{isNaN(result[0]+result[1])?"0":result[0]+result[1]}</b>
+              Total:{" "}
+              <b>
+                {isNaN(result[0] + result[1]) ? "0" : result[0] + result[1]}
+              </b>
             </Typography>
           </Grid>
         </Grid>
