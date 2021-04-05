@@ -4,11 +4,6 @@ describe('Cypress', () => {
     })
   })
 
-import { checarHabitaciones } from './../../../src/Functions/Functions';
-
-
-let Premium;
-let Economy;
 const clients = [23, 45, 155, 374, 22, 99, 100, 101, 115, 209];
 
 describe("Test 1", () => {
